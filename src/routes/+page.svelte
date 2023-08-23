@@ -3,6 +3,9 @@
 	import EmojiContainer from '$lib/components/EmojiContainer.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Spinner from '$lib/components/Spinner.svelte';
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+	import { Icon, ArrowLongUp } from 'svelte-hero-icons';
 
 	export let form;
 
@@ -21,22 +24,43 @@
 	} else {
 		greeting = 'Evening';
 	}
+
+	let active = false;
+
+onMount(() => {
+	window.addEventListener('scroll', handleScroll);
+
+	return () => {
+		window.removeEventListener('scroll', handleScroll);
+	};
+});
+
+function handleScroll() {
+	active = window.scrollY > 300;
+}
+
+function scrollToTop() {
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth'
+	});
+}
 </script>
 
 <div class="relative min-h-screen bg-[#FFFBD8]">
 	<Header />
 
-	<div class="box text-center flex flex-col py-6 mt-8">
+	<div class="box text-center flex flex-col py-6 lg:mt-8">
 		{#if form?.success}
-			<h2 class="font-bold text-4xl text-[#008480]">Thank You!</h2>
-			<h1 class="font-bold text-5xl">Your Response Has Been Submitted</h1>
+			<h2 class="font-bold text-3xl lg:text-4xl text-[#008480]">Thank You!</h2>
+			<h1 class="font-bold text-4xl lg:text-5xl">Your Response Has Been Submitted</h1>
 		{:else}
-			<h2 class="font-bold text-4xl text-[#008480]">Good {greeting}!</h2>
-			<h1 class="font-bold text-5xl">Please Rate Our Toilet</h1>
+			<h2 class="font-bold text-3xl lg:text-4xl text-[#008480]">Good {greeting}!</h2>
+			<h1 class="font-bold text-4xl lg:text-5xl">Please Rate Our Toilet</h1>
 		{/if}
 	</div>
 
-	<div class="mt-12">
+	<div class="mt-2 lg:mt-12">
 		{#if loading}<Spinner />
 		{:else if !form?.success}
 			<form
@@ -59,3 +83,13 @@
 		{/if}
 	</div>
 </div>
+
+{#if active}
+<button
+	class="fixed bottom-8 right-4 p-3 bg-black text-white rounded opacity-30 z-[1003]"
+	on:click={scrollToTop}
+	transition:fade={{ duration: 150 }}
+>
+	<Icon class="w-6" src={ArrowLongUp} />
+</button>
+{/if}
