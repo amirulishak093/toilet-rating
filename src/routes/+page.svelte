@@ -63,11 +63,11 @@ function scrollToTop() {
 	<div class="mt-2 lg:mt-12">
 		{#if loading}<Spinner />
 		{:else if form?.success}
-		<div class="flex flex-col items-center gap-y-20">
-			<img alt="Thumbs up" class="w-52" src="/images/thumbs-up.png" />
+		<div class="flex flex-col items-center gap-y-12 sm:gap-y-20 pb-12">
+			<img alt="Thumbs up" class="w-36 sm:w-52" src="/images/thumbs-up.png" />
 			<a href="https://www.medivest.com.my/" class="flex gap-x-2 items-center border border-[#008480] px-4 py-2 rounded-full hover:scale-105 transition-all">
-				<img alt="Logo" class="w-8" src="/images/logo2.png" />
-				<span class="text-[#008480] font-semibold">medivest.com.my</span>
+				<img alt="Logo" class="w-5 sm:w-7" src="/images/logo2.png" />
+				<span class="text-[#008480] text-sm sm:text-base font-semibold">medivest.com.my</span>
 			</a>
 			
 		</div>
