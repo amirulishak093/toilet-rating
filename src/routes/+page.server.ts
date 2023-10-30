@@ -20,7 +20,7 @@ export const actions: Actions = {
 		const area =  String(formData.get('area')).toUpperCase();
 
 		try {
-			const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSe7tm5fTWg9ej3p6lUw_mBIp6r-LYKhJsBPzTV67GbZkn1Rfg/formResponse?usp=pp_url&entry.1351215600=${rating}&entry.923120015=${site}&entry.1845614413=${area}`
+			const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSdKvFtTBo5LsiGnUcuru6XqnkbO_vbx4H5IJWH2nW-LeZuOZA/formResponse?usp=pp_url&entry.1351215600=${rating}&entry.647138747=${site}&entry.353172185=${area}`
 
 			await fetch(prefilledLink);
 
